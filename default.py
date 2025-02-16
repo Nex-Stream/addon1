@@ -10,7 +10,10 @@ import xml.etree.ElementTree as ET
 import xbmc
 import xbmcaddon
 import xbmcvfs
-
+# Adatta le funzioni per compatibilità con Kodi 19+
+if not hasattr(xbmc, 'translatePath'):
+    xbmc.translatePath = xbmcvfs.translatePath
+    
 from platformcode import config, logger
 
 logger.info("init...")
