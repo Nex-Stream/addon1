@@ -24,7 +24,7 @@ def start():
     )
     
     # Check if plugin.video.kod exists
-    kod_path = os.path.join(config.get_data_path(), "../plugin.video.kod")
+    kod_path = os.path.join(config.get_data_path(), "plugin.video.kod")
     if os.path.exists(kod_path):
         choice = platformtools.dialog_yesno(
             "Avviso", "plugin.video.kod verrà sostituito con Stream4Me. Procedere?")
