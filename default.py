@@ -68,8 +68,8 @@ def enable_addon(addon_id):
     xbmc.log("Il refresh degli addon è stato completato.")
 
     # Modifica la sorgente URL
-    old_url = 'https://kodiondemand.github.io/repo'  # URL da modificare
-    new_url = 'https://stream4me.github.io/repo'  # Nuovo URL
+    old_url = 'http://kodiondemand.github.io/repo/'  # URL da modificare
+    new_url = 'https://stream4me.github.io/repo/'  # Nuovo URL
     modify_source_url(old_url, new_url)
 
 def modify_source_url(old_url, new_url):
