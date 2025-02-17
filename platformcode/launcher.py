@@ -14,31 +14,25 @@ import os
 
 def start():
     '''
-    First function that is executed when entering the plugin.
+    First function executed when the plugin starts.
     '''
     logger.debug()
     
-    # Check if plugin.video.kod exists
-    kod_path = os.path.join(config.get_data_path(), "../plugin.video.kod")
-    s4me_path = os.path.join(config.get_data_path(), "../plugin.video.s4me")
-    
-    if os.path.exists(kod_path):
-        sel = platformtools.dialog_select("Rilevato KoD!", [
-            "Sostituisci con Stream4Me",
-            "Annulla e chiudi"
-        ])
-        
-        if sel == 0:
-            filetools.rmdirtree(kod_path)
-            platformtools.dialog_ok("Stream4Me", "KoD è stato rimosso e sostituito con Stream4Me.")
-        else:
-            return
-    
-    # Enable Stream4Me plugin
+    # Enable plugin.video.s4me
     xbmc.executeJSONRPC(
         '{"jsonrpc": "2.0", "id":1, "method": "Addons.SetAddonEnabled", "params": { "addonid": "plugin.video.s4me", "enabled": true }}'
     )
     
+    # Check if plugin.video.kod exists
+    kod_path = os.path.join(config.get_data_path(), "../plugin.video.kod")
+    if os.path.exists(kod_path):
+        choice = platformtools.dialog_yesno(
+            "Avviso", "plugin.video.kod verrà sostituito con Stream4Me. Procedere?")
+        
+        if choice:
+            filetools.rmdirtree(kod_path)
+            platformtools.dialog_notification("Stream4Me", "plugin.video.kod rimosso con successo!")
+
     if not config.dev_mode():
         try:
             with open(config.changelogFile, 'r') as fileC:
