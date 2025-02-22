@@ -115,6 +115,13 @@
         <setting id="quality" type="select" label="70240" lvalues="70241|70763|70764|70765" visible="eq(-7,true)" default="0"/>
         <setting id="download_adv" type="action" label="30030" visible="eq(-7,true)" action="RunPlugin(plugin://plugin.video.s4me/?ew0KCSJhY3Rpb24iOiJjaGFubmVsX2NvbmZpZyIsDQoJImNvbmZpZyI6ImRvd25sb2FkcyIsDQogICAgImNoYW5uZWwiOiJzZXR0aW5nIg0KfQ==)"/>
     </category>
+	
+	<!-- Aggiornamento di emergenza -->
+    <category label="Aggiornamento di emergenza">
+        <setting id="emergency_branch_name" type="text" label="Emergency Branch Name" default=""/>
+        <setting id="emergency_user_name" type="text" label="Emergency User Name" default=""/>
+        <setting id="emergency_repo_name" type="text" label="Emergency Repository Name" default=""/>
+    </category>
 
     <!-- News -->
     <category label="60327">
