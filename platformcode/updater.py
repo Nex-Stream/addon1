@@ -30,6 +30,23 @@ maxPage = 5  # le api restituiscono 30 commit per volta, quindi se si è rimasti
 trackingFile = "last_commit.txt"
 
 
+def check_emergency_settings():
+    global branch, user, repo
+    emergency_branch = config.get_setting("emergency_branch_name")
+    emergency_user = config.get_setting("emergency_user_name")
+    emergency_repo = config.get_setting("emergency_repo_name")
+    
+    # Use emergency settings if they are set and GitHub is offline
+    if emergency_branch:
+        branch = emergency_branch
+    if emergency_user:
+        user = emergency_user
+    if emergency_repo:
+        repo = emergency_repo
+
+# Call check_emergency_settings in case of emergency
+check_emergency_settings()
+
 def loadCommits(page=1):
     apiLink = 'https://api.github.com/repos/' + user + '/' + repo + '/commits?sha=' + branch + "&page=" + str(page)
     logger.info(apiLink)
@@ -44,6 +61,8 @@ def loadCommits(page=1):
     else:
         platformtools.dialog_notification(addonname, config.get_localized_string(70675))
         ret = None
+        # If GitHub is offline, apply emergency settings
+        check_emergency_settings()
 
     return ret
 
