@@ -60,10 +60,9 @@ def loadCommits(page=1):
             xbmc.sleep(1000)
     else:
         platformtools.dialog_notification(addonname, config.get_localized_string(70675))
-        ret = None
-        # If GitHub is offline, apply emergency settings
         check_emergency_settings()
-
+        ret = None
+        
     return ret
 
 
